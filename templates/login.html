@@ -1,0 +1,126 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link rel="icon" href="{{ url_for('static', filename='ufssm.png') }}" type="image/x-icon">
+    <title>Login - Cesta Básica</title>
+    <style>
+      body, html {
+        height: 100%;
+        margin: 0;
+        font-family: Arial, sans-serif;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        background: #f2f2f2;
+      }
+      .login-container {
+        background: #fff;
+        padding: 40px;
+        border-radius: 10px;
+        box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+        max-width: 400px;
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+      }
+      .login-container .logo {
+        margin-bottom: 24px;
+      }
+      .login-container .logo img {
+        width: 100px; /* ajuste conforme necessário */
+        height: auto;
+      }
+      .login-container h1 {
+        margin-bottom: 24px;
+        font-size: 24px;
+        color: #333;
+        text-align: center;
+      }
+      .login-container p {
+        margin-bottom: 16px;
+        color: #666;
+        text-align: center;
+      }
+      .login-container label {
+        display: block;
+        margin-bottom: 8px;
+        color: #666;
+      }
+      .login-container input[type="text"], 
+      .login-container input[type="password"] {
+        width: calc(100% - 20px);
+        padding: 10px;
+        margin-bottom: 16px;
+        border: 1px solid #ddd;
+        border-radius: 5px;
+        box-sizing: border-box;
+      }
+      .login-container button {
+        width: 100%;
+        padding: 10px;
+        background: #007BFF;
+        border: none;
+        border-radius: 5px;
+        color: #fff;
+        font-size: 16px;
+        cursor: pointer;
+        transition: background 0.3s;
+      }
+      .login-container button:hover {
+        background: #0056b3;
+      }
+      .login-container .messages {
+        margin-top: 16px;
+        color: red;
+        text-align: center;
+      }
+      .login-container .messages ul {
+        list-style-type: none;
+        padding: 0;
+      }
+    </style>
+</head>
+<body>
+    <div class="login-container">
+        <div class="logo">
+            <img src="static/eco.png" alt="Logo">
+        </div>
+        <h1>Bem-vindo</h1>
+        <form id="login-form" method="POST" onsubmit="return validateForm()">
+            <label for="username">Usuário:</label>
+            <input type="text" id="username" name="username" required>
+            <label for="password">Senha:</label>
+            <input type="password" id="password" name="password" required>
+            <button type="submit">Entrar</button>
+        </form>
+        <p>Este é o sistema de login para acessar o programa de Cesta Básica. Se você deseja obter acesso, por favor, entre em contato pelo email: <strong>coord.eco@ufsm.br</strong>.<br> Se estiver com dúvidas, você pode visitar o nosso <a href="https://www.ufsm.br/cursos/graduacao/palmeira-das-missoes/ciencias-economicas/cbpm">site</a> para obter mais informações.</p>
+        <div class="messages">
+            {% with messages = get_flashed_messages() %}
+            {% if messages %}
+            <ul>
+                {% for message in messages %}
+                <li>{{ message }}</li>
+                {% endfor %}
+            </ul>
+            {% endif %}
+            {% endwith %}
+        </div>
+    </div>
+    
+
+    <script>
+        function validateForm() {
+            var username = document.getElementById("username").value;
+            var password = document.getElementById("password").value;
+            if (username == "" || password == "") {
+                alert("Username and password must be filled out");
+                return false;
+            }
+            return true;
+        }
+    </script>
+</body>
+</html>

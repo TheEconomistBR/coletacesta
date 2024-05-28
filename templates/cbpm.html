@@ -1,0 +1,46 @@
+{% extends "base.html" %}
+
+{% block title %}Coleta de Preços CBPM - UFSM/PM{% endblock %}
+
+{% block content %}
+<div class="container">
+    <h1 class="mt-4">Coleta CBPM - Cesta Básica de Palmeira das Missões</h1>
+    <form method="post" class="mt-4">
+        <div class="form-group">
+            <label for="supermercado">Supermercado:</label>
+            <select id="supermercado" name="supermercado" class="form-control" required>
+                {% for supermercado in supermercados %}
+                <option value="{{ supermercado.id }}">{{ supermercado.nome }}</option>
+                {% endfor %}
+            </select>
+        </div>
+        <div class="form-group">
+            <label for="produto">Produto:</label>
+            <select id="produto" name="produto" class="form-control" required>
+                {% for produto in produtos %}
+                <option value="{{ produto.id }}">{{ produto.nome }}</option>
+                {% endfor %}
+            </select>
+        </div>
+        <div class="form-group">
+            <label for="preco">Preço:</label>
+            <div class="input-group">
+                <input type="number" step="0.01" id="preco" name="preco" class="form-control" required>
+                <div class="input-group-append">
+                    <span class="input-group-text">R$</span>
+                </div>
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="data_coleta">Data da Coleta:</label>
+            <div class="input-group">
+                <input type="date" id="data_coleta" name="data_coleta" class="form-control" required>
+                <div class="input-group-append">
+                    <span class="input-group-text"><i class="far fa-calendar-alt"></i></span>
+                </div>
+            </div>
+        </div>
+        <button type="submit" class="btn btn-primary">Enviar</button>
+    </form>
+</div>
+{% endblock %}
